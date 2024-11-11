@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taniti Island Tourism</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #dbeafe;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1e3a8a;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 1rem;
+        }
+
+        .search-input {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .search-input input {
+            border: none;
+            background: transparent;
+            padding: 0.5rem;
+            width: 100%;
+        }
+
+        .search-button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .quick-link-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Featured Section */
+        .featured {
+            padding: 2rem 0;
+        }
+
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #f3f4f6;
+        }
+
+        .filter-button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            height: 200px;
+            background: #f3f4f6;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        /* Weather Widget */
+        .weather-widget {
+            display: none;
+            background: #f8fafc;
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .weather-content {
+            display: flex;
+            justify-content: space-around;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .weather-item {
+            text-align: center;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Taniti Island</div>
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="nav-menu" id="navMenu">
+                    <a href="#" id="weatherButton"><i class="fas fa-sun"></i> Weather</a>
+                    <a href="#plan">Plan Your Trip</a>
+                    <a href="#stay">Where to Stay</a>
+                    <a href="#activities">Things to Do</a>
+                    <a href="#info">Practical Info</a>
+                </nav>
+            </div>
+        </div>
+        <div class="weather-widget" id="weatherWidget">
+            <div class="weather-content">
+                <div class="weather-item">
+                    <div class="font-bold">Now</div>
+                    <div>82°F</div>
+                </div>
+                <div class="weather-item">
+                    <div class="font-bold">Today</div>
+                    <div>75-88°F</div>
+                </div>
+                <div class="weather-item">
+                    <div class="font-bold">Tomorrow</div>
+                    <div>73-85°F</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Discover Paradise in Taniti</h1>
+                <div class="search-bar">
+                    <form class="search-form">
+                        <div class="search-input">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" placeholder="Where would you like to stay?">
+                        </div>
+                        <div class="search-input">
+                            <i class="fas fa-calendar"></i>
+                            <input type="text" placeholder="When?">
+                        </div>
+                        <button type="submit" class="search-button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="quick-links">
+                <div class="quick-link-card">
+                    <h3>Transportation</h3>
+                    <p>Bus, Taxi & Car Rentals</p>
+                </div>
+                <div class="quick-link-card">
+                    <h3>Accommodations</h3>
+                    <p>Hotels, B&Bs & Rentals</p>
+                </div>
+                <div class="quick-link-card">
+                    <h3>Activities</h3>
+                    <p>Tours & Experiences</p>
+                </div>
+                <div class="quick-link-card">
+                    <h3>Local Info</h3>
+                    <p>Tips & Guidelines</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured container">
+            <div class="featured-header">
+                <h2>Featured Experiences</h2>
+                <div class="filter-buttons">
+                    <button class="filter-button active">All</button>
+                    <button class="filter-button">Beach</button>
+                    <button class="filter-button">Culture</button>
+                </div>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="card-image"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3>Snorkeling Adventure</h3>
+                            <button class="favorite-button">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <p>Experience the best of Taniti with our guided tours and activities.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                            <span class="price">From $99</span>
+                            <button class="learn-more">Learn More →</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for other cards -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Weather Widget Toggle
+        const weatherButton = document.getElementById('weatherButton');
+        const weatherWidget = document.getElementById('weatherWidget');
+        
+        weatherButton.addEventListener('click', () => {
+            weatherWidget.style.display = 
+                weatherWidget.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // Filter Buttons
+        const filterButtons = document.querySelectorAll('.filter-button');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // Favorite Toggle
+        const favoriteButtons = document.querySelectorAll('.favorite-button');
+        
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const icon = button.querySelector('i');
+                icon.classList.toggle('fas');
+                icon.classList.toggle('far');
+            });
+        });
+    </script>
+</body>
+</html>
