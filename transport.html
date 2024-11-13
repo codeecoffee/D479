@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation - Taniti Island</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./explore.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Transport Options */
+        .transport-options {
+            margin: -50px auto 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .transport-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .transport-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .transport-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .price-tag {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        /* Route Map Section */
+        .route-map {
+            margin: 4rem 0;
+            padding: 3rem 0;
+            background: #f8fafc;
+        }
+
+        .map-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .route-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .route-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .route-item i {
+            margin-right: 1rem;
+            color: #2563eb;
+        }
+
+        /* Booking Widget */
+        .booking-widget {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 4rem 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .footer {
+            background: #1e3a8a;
+            color: white;
+            padding: 4rem 0 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #cbd5e1;
+            font-size: 0.875rem;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            padding: 0.5rem;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            background: transparent;
+            color: white;
+            flex-grow: 1;
+        }
+
+        .newsletter-button {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .transport-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header from main page -->
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Explore Taniti with Ease</h1>
+            <p>Discover our convenient transportation options across the island</p>
+        </div>
+    </div>
+
+    
+    <div class="container transport-options">
+        <div class="transport-grid">
+            <div class="transport-card">
+                <div class="card-image">
+                    <img src="./bus.png" alt="Public Bus">
+                </div>
+                <div class="card-content">
+                    <h3>Public Bus</h3>
+                    <p>Regular service throughout Taniti City</p>
+                    <div class="price-tag">From $2/ride</div>
+                    <ul>
+                        <li>5 AM to 11 PM daily</li>
+                        <li>Air-conditioned vehicles</li>
+                        <li>Major stops announcement</li>
+                    </ul>
+                    <button class="btn" style="margin-top: 1rem">View Schedule</button>
+                </div>
+            </div>
+
+            <div class="transport-card">
+                <div class="card-image">
+                    <img src="./taxi.jpg" alt="Taxi Service">
+                </div>
+                <div class="card-content">
+                    <h3>Taxi Service</h3>
+                    <p>24/7 on-demand transportation</p>
+                    <div class="price-tag">From $15/ride</div>
+                    <ul>
+                        <li>Professional drivers</li>
+                        <li>Air-conditioned cars</li>
+                        <li>Credit cards accepted</li>
+                    </ul>
+                    <button class="btn" style="margin-top: 1rem">Book Now</button>
+                </div>
+            </div>
+
+            <div class="transport-card">
+                <div class="card-image">
+                    <img src="./rental.png" alt="Car Rental">
+                </div>
+                <div class="card-content">
+                    <h3>Car Rental</h3>
+                    <p>Explore at your own pace</p>
+                    <div class="price-tag">From $45/day</div>
+                    <ul>
+                        <li>Various vehicle options</li>
+                        <li>Insurance included</li>
+                        <li>24/7 support</li>
+                    </ul>
+                    <button class="btn" style="margin-top: 1rem">Reserve</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <div class="route-map">
+        <div class="container">
+            <div class="map-container">
+                <div class="route-list">
+                    <h2>Popular Routes</h2>
+                    <div class="route-item">
+                        <i class="fas fa-plane"></i>
+                        <div>
+                            <h4>Airport - Taniti City</h4>
+                            <p>Every 30 minutes | 25 minutes journey</p>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <div>
+                            <h4>City - Yellow Leaf Bay</h4>
+                            <p>Every 20 minutes | 15 minutes journey</p>
+                        </div>
+                    </div>
+                    <div class="route-item">
+                        <i class="fas fa-mountain"></i>
+                        <div>
+                            <h4>City - Volcano Tours</h4>
+                            <p>Every hour | 40 minutes journey</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: #eee; height: 400px; border-radius: 15px;">
+                    
+                    <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: #2563eb;"></i>
+                            <p style="margin-top: 1rem;">Interactive Route Map</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <div class="booking-widget">
+            <h2>Book Your Transport</h2>
+            <form class="form-grid">
+                <div class="form-group">
+                    <label>Transport Type</label>
+                    <select>
+                        <option>Select type</option>
+                        <option>Bus Pass</option>
+                        <option>Taxi Service</option>
+                        <option>Car Rental</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date">
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time">
+                </div>
+                <div class="form-group">
+                    <label>Passengers</label>
+                    <input type="number" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn">Book Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Taniti</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Island</a></li>
+                        <li><a href="history.html">History & Culture</a></li>
+                        <li><a href="weather.html">Weather & Climate</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Plan Your Trip</h3>
+                    <ul class="footer-links">
+                        <li><a href="transportation.html">Transportation</a></li>
+                        <li><a href="accommodations.html">Where to Stay</a></li>
+                        <li><a href="activities.html">Things to Do</a></li>
+                        <li><a href="dining.html">Restaurants</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Visitor Information</h3>
+                    <ul class="footer-links">
+                        <li><a href="safety.html">Safety Tips</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="customs.html">Local Customs</a></li>
+                        <li><a href="emergency.html">Emergency Info</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@taniti.com</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h3>Newsletter</h3>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input">
+                            <button type="submit" class="newsletter-button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Taniti Island Tourism. All rights reserved.</p>
+                <p>
+                    <a href="privacy.html" style="color: inherit; margin: 0 10px;">Privacy Policy</a> |
+                    <a href="terms.html" style="color: inherit; margin: 0 10px;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations - Taniti Island</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Core Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./Island.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 2rem;
+            margin-top: -50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-item {
+            margin-bottom: 1rem;
+        }
+
+        /* Accommodation Cards */
+        .accommodation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .accommodation-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .accommodation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .accommodation-image {
+            height: 250px;
+            position: relative;
+        }
+
+        .accommodation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .accommodation-type {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+        }
+
+        .accommodation-content {
+            padding: 1.5rem;
+        }
+
+        .rating {
+            color: #fbbf24;
+            margin: 0.5rem 0;
+        }
+
+        .amenities {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .amenities i {
+            color: #2563eb;
+        }
+
+        .price-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: #f8fafc;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .map-container {
+            height: 400px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+
+        .footer {
+            background: #1e3a8a;
+            color: white;
+            padding: 4rem 0 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #cbd5e1;
+            font-size: 0.875rem;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            padding: 0.5rem;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            background: transparent;
+            color: white;
+            flex-grow: 1;
+        }
+
+        .newsletter-button {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .accommodation-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Find Your Perfect Stay in Taniti</h1>
+            <p>From luxury resorts to cozy B&Bs, discover your ideal accommodation</p>
+        </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="container">
+        <div class="filter-section">
+            <form class="filter-grid">
+                <div class="filter-item">
+                    <label>Check In</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="filter-item">
+                    <label>Check Out</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="filter-item">
+                    <label>Guests</label>
+                    <select class="form-control">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4+ Guests</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>&nbsp;</label>
+                    <button class="btn" style="width: 100%">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Accommodation Listings -->
+        <div class="accommodation-grid">
+            <!-- Resort Card -->
+            <div class="accommodation-card">
+                <div class="accommodation-image">
+                    <img src="/resort.jpg" alt="Luxury Resort">
+                    <span class="accommodation-type">Resort</span>
+                </div>
+                <div class="accommodation-content">
+                    <h3>Taniti Bay Resort</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="amenities">
+                        <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                        <span><i class="fas fa-swimming-pool"></i> Pool</span>
+                        <span><i class="fas fa-utensils"></i> Restaurant</span>
+                    </div>
+                    <p>Luxury beachfront resort with spectacular ocean views and world-class amenities.</p>
+                    <div class="price-section">
+                        <div>
+                            <span class="price">From $299/night</span>
+                        </div>
+                        <button class="btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="accommodation-card">
+                <div class="accommodation-image">
+                    <img src="./bb.jpg" alt="B&B">
+                    <span class="accommodation-type">B&B</span>
+                </div>
+                <div class="accommodation-content">
+                    <h3>Yellow Leaf B&B</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="amenities">
+                        <span><i class="fas fa-wifi"></i> Free WiFi</span>
+                        <span><i class="fas fa-coffee"></i> Breakfast</span>
+                        <span><i class="fas fa-parking"></i> Parking</span>
+                    </div>
+                    <p>Charming bed & breakfast with local hospitality and home-cooked meals.</p>
+                    <div class="price-section">
+                        <div>
+                            <span class="price">From $149/night</span>
+                        </div>
+                        <button class="btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="accommodation-card">
+                <div class="accommodation-image">
+                    <img src="./villa.jpg" alt="Beach House">
+                    <span class="accommodation-type">Beach House</span>
+                </div>
+                <div class="accommodation-content">
+                    <h3>Sunset Beach Villa</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="amenities">
+                        <span><i class="fas fa-home"></i> Private</span>
+                        <span><i class="fas fa-kitchen-set"></i> Kitchen</span>
+                        <span><i class="fas fa-water"></i> Beachfront</span>
+                    </div>
+                    <p>Private beach house perfect for families or groups, steps from the ocean.</p>
+                    <div class="price-section">
+                        <div>
+                            <span class="price">From $399/night</span>
+                        </div>
+                        <button class="btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="map-section">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem">Explore Accommodations by Location</h2>
+            <div class="map-container">
+                <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: #2563eb;"></i>
+                        <p style="margin-top: 1rem">Interactive Property Map</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Taniti</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Island</a></li>
+                        <li><a href="history.html">History & Culture</a></li>
+                        <li><a href="weather.html">Weather & Climate</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Plan Your Trip</h3>
+                    <ul class="footer-links">
+                        <li><a href="transportation.html">Transportation</a></li>
+                        <li><a href="accommodations.html">Where to Stay</a></li>
+                        <li><a href="activities.html">Things to Do</a></li>
+                        <li><a href="dining.html">Restaurants</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Visitor Information</h3>
+                    <ul class="footer-links">
+                        <li><a href="safety.html">Safety Tips</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="customs.html">Local Customs</a></li>
+                        <li><a href="emergency.html">Emergency Info</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@taniti.com</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h3>Newsletter</h3>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input">
+                            <button type="submit" class="newsletter-button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Taniti Island Tourism. All rights reserved.</p>
+                <p>
+                    <a href="privacy.html" style="color: inherit; margin: 0 10px;">Privacy Policy</a> |
+                    <a href="terms.html" style="color: inherit; margin: 0 10px;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+    </script>
+</body>
+</html>

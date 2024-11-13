@@ -66,15 +66,18 @@
 
         /* Hero Section */
         .hero {
-            background-color: #dbeafe;
+            /* background-color: #dbeafe; */
             padding: 4rem 2rem;
             text-align: center;
+            /* background-image: url("./paradise.jpg"); */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./paradise.jpg) center / cover;
+            background-position-y: 60%;
         }
 
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: #1e3a8a;
+            color: #c6cdde;
         }
 
         /* Search Bar */
@@ -128,6 +131,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             padding: 2rem 0;
+            cursor: pointer;
         }
 
         .quick-link-card {
@@ -224,6 +228,111 @@
         .weather-item {
             text-align: center;
         }
+        .footer {
+            background: #1e3a8a;
+            color: white;
+            padding: 4rem 0 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #cbd5e1;
+            font-size: 0.875rem;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-input {
+            padding: 0.5rem;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            background: transparent;
+            color: white;
+            flex-grow: 1;
+        }
+
+        .newsletter-button {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background: #1d4ed8;
+        }
 
         /* Mobile Styles */
         @media (max-width: 768px) {
@@ -255,6 +364,13 @@
             .search-form {
                 grid-template-columns: 1fr;
             }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -268,10 +384,10 @@
                 </button>
                 <nav class="nav-menu" id="navMenu">
                     <a href="#" id="weatherButton"><i class="fas fa-sun"></i> Weather</a>
-                    <a href="#plan">Plan Your Trip</a>
-                    <a href="#stay">Where to Stay</a>
-                    <a href="#activities">Things to Do</a>
-                    <a href="#info">Practical Info</a>
+                    <a href="./transport.html">Plan Your Trip</a>
+                    <a href="./accommodations.html">Where to Stay</a>
+                    <a href="./activities">Things to Do</a>
+                    <a href="./information.html">Practical Info</a>
                 </nav>
             </div>
         </div>
@@ -315,22 +431,22 @@
 
         <section class="container">
             <div class="quick-links">
-                <div class="quick-link-card">
+                <a class="quick-link-card" href="./transport.html">
                     <h3>Transportation</h3>
                     <p>Bus, Taxi & Car Rentals</p>
-                </div>
-                <div class="quick-link-card">
+                </a>
+                <a class="quick-link-card" href="./accommodations.html">
                     <h3>Accommodations</h3>
                     <p>Hotels, B&Bs & Rentals</p>
-                </div>
-                <div class="quick-link-card">
+                </a>
+                <a class="quick-link-card" href="./activities">
                     <h3>Activities</h3>
                     <p>Tours & Experiences</p>
-                </div>
-                <div class="quick-link-card">
+                </a>
+                <a class="quick-link-card" href="./information.html">
                     <h3>Local Info</h3>
                     <p>Tips & Guidelines</p>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -364,7 +480,74 @@
             </div>
         </section>
     </main>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About Taniti</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Our Island</a></li>
+                        <li><a href="history.html">History & Culture</a></li>
+                        <li><a href="weather.html">Weather & Climate</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer-section">
+                    <h3>Plan Your Trip</h3>
+                    <ul class="footer-links">
+                        <li><a href="transportation.html">Transportation</a></li>
+                        <li><a href="accommodations.html">Where to Stay</a></li>
+                        <li><a href="activities.html">Things to Do</a></li>
+                        <li><a href="dining.html">Restaurants</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Visitor Information</h3>
+                    <ul class="footer-links">
+                        <li><a href="safety.html">Safety Tips</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="customs.html">Local Customs</a></li>
+                        <li><a href="emergency.html">Emergency Info</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@taniti.com</span>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="newsletter">
+                        <h3>Newsletter</h3>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input">
+                            <button type="submit" class="newsletter-button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Taniti Island Tourism. All rights reserved.</p>
+                <p>
+                    <a href="privacy.html" style="color: inherit; margin: 0 10px;">Privacy Policy</a> |
+                    <a href="terms.html" style="color: inherit; margin: 0 10px;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
     <script>
         // Navigation
         const navToggle = document.getElementById('navToggle');
